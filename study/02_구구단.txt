@@ -1,0 +1,56 @@
+React.createElement를 JSX로 변환
+
+return React.createElement('button', {onClick: () => this.setState({liked: true})}, 'Like');
+
+
+return (
+	<button onClick={() => this.setState({liked: true})}>
+	Like
+	</button>
+)
+
+
+babel 라이브러리가 위와 같은 JSX 문법을 찾으면 React.createElement로 바꿔줘서 JSX 사용이 가능하다.
+
+
+
+실무에서 리엑트 버전 확인 방법
+
+React 17 : ReactDOM.render(<LikeButton />, document.querySelector('id or class'));
+
+React 18 : ReactDOM.createRoot(document.querySelector('id or class')).render(<LikeButton />);
+
+
+
+HTML코드는 소문자로 시작해야하고 컴포넌트명은 대문자로 시작해야한다.
+
+
+
+객체를 함부러 바꾸지 마라(불변성), React는 데이터가 바뀌면 화면을 다시 렌더링한다.
+
+ex)
+this.state.liked : false;
+
+return (
+	<button onClick={() => { this.state.liked = true }}>
+	Like
+	</button>
+)
+(X)
+
+필요시에는 React에서 제공해주는 setState 함수로 값을 변경해주어야한다.
+
+
+return (
+	<button onClick={() => { this.setState({liked: true})}}>
+	Like
+	</button>
+)
+(O)
+
+
+
+React Developer Tools
+
+
+Class Component에선 this문제가 발생하므로 Function Component를 사용한다.

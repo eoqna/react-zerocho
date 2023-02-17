@@ -1,0 +1,116 @@
+Webpack을 쓰는 이유
+실무에서 Component 하나만으로 작업하는 경우는 없다.
+=> 하나의 Component로 모든 코드를 작성하게 되면 코드의 가독성도 떨어지고 유지보수를 할 수 없게 된다.
+
+* 페이스북 컴포넌트는 2만개이다.
+
+여러 개의 JS 파일을 하나로 합쳐서 하나의 JS 파일로 만들어주기 위해서.
+
+node : JS 실행기
+
+
+웹팩 설치방법
+
+npm init
+
+=> package명 입력
+
+author : 사용자 이름
+
+license : ISC, MIT
+
+
+1. react 필요한 라이브러리
+
+1) react
+
+2) react-dom
+
+3) webpack (dev)
+
+4) webpack-cli (dev)
+
+// 브라우저에 맞게 최신 문법을 옛날 문법으로 바꿔준다.
+5) @babel/core (dev)
+
+// 개발 환경에 맞게 알아서 바꿔주는 것
+6) @babel/preset-env (dev)
+
+// jsx를 지원해준다.
+7) @babel/preset-react (dev)
+
+// babel과 webpack을 연결해준다.
+7) babel-loader (dev)
+
+실제 서비스할 때는 webpack이 필요없음
+
+
+폴더 안에 webpack.config.js 파일 생성
+
+client.jsx 파일 생성 후 아래 코드 입력
+const React = require('react');
+const ReactDom = require('react-dom');
+
+react를 사용할 html 파일에서 body부분에 아래와 같이 코드 입력
+<script src="./dist/app.js"></script>
+
+
+! 위 코드를 자동으로 만들어 주는 것이 npx creat-react-app 이다
+
+client.jsx 파일에 아래 코드 입력
+ReactDOM.creatRoot(document.querySelector('#root')).render(<Gugudan />);
+
+
+
+webpack 설정
+
+// node의 path를 이용할 수 있게 선언해준다.
+const path = require('path');
+
+module.exports = {
+	name: '이름',
+	mode: 'development'(개발), production(실서비스)
+	devtool: 'eval'(개발), 'hidden-source-map (실 서비스)
+	resolve: {
+		extensions: ['.js', 'jsx'] (파일 확장자를 선언해서 entry에서 생략하고 사용할 수 있게 된다.)
+	},
+
+	entry: {
+		// 위에서 만든 client.jsx파일을 기본 입력으로 설정한다.
+		// WordRelay.jsx, React, ReactDOM이 이미 client.jsx 안에서 선언됐기 때문에 따로 선언해줄필요가 없다.
+		app: ['./client.jsx'],
+	}, //입력
+
+	module: {
+		rules: [{
+      		test: /\.jsx?/,
+      		loader: 'babel-loader',
+      		options: {
+        			presets: [
+          				'@babel/preset-env',
+          				'@babel/preset-react'
+        			],
+      		},
+    		}],
+
+	},
+
+	output: {
+		// path : 경로를 설정해준다. node의 path를 이용하여 파일 경로를 설정해준다.
+		path: path.join(__dirname, 'dist'),
+
+		// path에서 설정한 경로에서 지정한 filename을 가져온다. (app.js로 배포된다.)
+		filename: 'app.js',
+	}, //출력
+}
+
+
+터미널에서 webpack 명령어를 직접 입력하면 등록된 명령어가 아니라서 실행되지 않는다.
+
+명령어를 등록하는 방법은 3가지가 있는데 
+첫 번째는 직접 webpack명령어를 넣어주는것과 
+두 번째는 package.json의 scripts에서 webpack을 등록해주는 것이고
+세 번째는 npx webpack을 치는것이다.
+
+
+

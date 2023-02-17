@@ -1,0 +1,55 @@
+webpack 설정 중 presets의 preset에 추가로 설정을 넣어줄 수 있다.
+
+기존
+presets: [
+	'@babel/preset-env',
+      '@babel/preset-react'
+],
+
+
+추가 설정 후
+presets: [
+	['@babel/preset-env', {
+      	targets: {
+			// 지원하고자 하는 브라우저만 적어주는 것이 좋다.
+            	browsers: ['last 2 chrome versions'],
+            },
+      }],
+      '@babel/preset-react',
+],
+
+
+설정할 preset을 대괄호로 묶어주고 콤마 뒤에 추가로 설정할 옵션을 넣어준다.
+
+자세한 옵션
+
+github.com/browserslist/browserslist#queries
+
+
+plugins 옵션(확장 프로그램) : webpack에서 기본적으로 적용되는 모듈말고 추가적으로 설정하고 싶으면 사용한다.
+
+plugins: [
+	new webpack.LoaderOptionsPlugin({debug: true}),
+],
+
+코드 작성 시
+entry > module > plugins > output 순으로 작성하면 흐름을 읽을 수 있다.
+
+
+
+자동 빌드 설정
+
+1. npm 설치
+npm i react-refresh @pmmmwh/react-refresh-webpack-plugin -D
+
+npm i webpack-dev-server -D
+
+scripts 명령어 변경 : "dev": "webpack serve --env development"
+
+
+2. webpack.config.js 추가 설정
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin') 추가 후
+
+plugins에 넣어주기
+new RefreshWebpackPlugin()
+

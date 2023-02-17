@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>구구단</title>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
+<!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+  'use strict';
+
+  const Gugudan = () => {
+    const [ first, setFirst ] = React.useState(Math.floor(Math.random() * 9) + 1);
+    const [ second, setSecond ] = React.useState(Math.floor(Math.random() * 9) + 1);
+    const [ value, setValue ] = React.useState("");
+    const [ result, setResult ] = React.useState("");
+    const inputRef = React.useRef(null);
+
+    const onChangeInput = (e) => {
+      setValue(e.target.value);
+    }
+
+    const onSubmitForm = (e) => {
+      e.preventDefault();
+      if(parseInt(value) === first * second) {
+        setFirst(Math.floor(Math.random() * 9) + 1);
+        setSecond(Math.floor(Math.random() * 9) + 1);
+        setValue('');
+        setResult((prevResult) => {
+          return '정답 : ' + value
+        });
+      } else {
+        setValue('');
+        setResult('땡');
+      }
+      inputRef.current.focus();
+    }
+
+    return (
+      <React.Fragment>
+        <p>{first} 곱하기 {second} 는?</p>
+        <form onSubmit={onSubmitForm}>
+          <input
+            ref={inputRef}
+            type="number"
+            value={value}
+            onChange={onChangeInput} 
+          />
+          <button>입력!</button>
+        </form>
+        <div>{result}</div>
+      </React.Fragment>
+    )
+  }
+
+</script>
+<script type="text/babel">
+  ReactDOM.createRoot(document.querySelector('#root')).render(<Gugudan />);
+</script>
+</body>
+</html>

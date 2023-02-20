@@ -5,7 +5,11 @@ module.exports = {
   mode: 'development',
   devtool: 'eval',
   resolve: {
+<<<<<<< HEAD
     extensions: ['.jsx', '.js']
+=======
+    extensions: ['.jsx', 'js']
+>>>>>>> fcf628f958616a9be19d68fcde73b97036969842
   },
 
   entry: {
@@ -21,13 +25,20 @@ module.exports = {
             targets: {
               browsers: ['> 1% in KR'],
             },
+<<<<<<< HEAD
             debug: true,
+=======
+>>>>>>> fcf628f958616a9be19d68fcde73b97036969842
           }],
           '@babel/preset-react'
         ],
         plugins: [
           '@babel/plugin-proposal-class-properties',
+<<<<<<< HEAD
           'react-refresh/babel',
+=======
+          'react-refresh-babel'
+>>>>>>> fcf628f958616a9be19d68fcde73b97036969842
         ]
       },
     }]
@@ -42,8 +53,12 @@ module.exports = {
   },
 
   devServer: {
+<<<<<<< HEAD
     devMiddleware: { publicPath: '/dist' },
     static: { directory: path.resolve(__dirname) },
+=======
+    publicPath: '/dist/',
+>>>>>>> fcf628f958616a9be19d68fcde73b97036969842
     hot: true,
   },
 }

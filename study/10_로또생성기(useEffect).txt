@@ -1,0 +1,44 @@
+useEffect는 여러 번 사용 가능하다.
+
+=> state마다 다른 Effect를 내고싶을 때 각 state마다 사용한다.
+
+* class의 경우 componentDidMount나 componentDidUpdate에서 모든 state를 조건문으로 분기 처리한다.
+
+
+useLayoutEffect : 화면의 레이아웃이 변화할 때 감지하여 발생한다. (잘 사용하지 않는다.)
+
+* useEffect : 화면이 완전히 바뀌고 난 후에 발생한다.
+
+
+
+useCallback을 필수로 적용해야하는 때
+
+자식 컴포넌트로 함수를 넘길 때
+
+=> useCallback이 없으면 매번 새로운 함수가 생성된다.
+
+그러면 자식 컴포넌트에선 매번 새로운 함수를 받으므로 함수에 바뀐 부분이 없어도 매번 재렌더링을 한다.
+
+
+useEffect를 componentDidMount에서만 사용하고 싶은 경우
+
+useEffect(() => {
+
+	//실행 함수
+
+}, [빈 배열]);
+
+
+
+useEffect를 componentDidUpdate에서만 사용하고 싶은 경우
+const mounted = useRef(false);
+
+useEffect(() => {
+
+	if(!mounted.current) {
+		mounted.current = true;
+	} else {
+		//실행 함수
+	}
+
+}, [바뀌는 값]);

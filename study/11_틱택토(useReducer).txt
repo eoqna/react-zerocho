@@ -1,0 +1,16 @@
+useReducer : Redux의 부분을 그대로 React에서 가져온 것
+
+하지만 Redux를 완벽하게 대체하기는 힘듦.
+
+소규모의 앱에서는 가능하다. (useReducer와 Context API로 대체 가능)
+
+비동기적인 작업을 할 때에는 Redux를 써야한다.
+
+
+
+
+useReducer
+
+action의 이름은 const로 따로 빼놓는게 좋고 대문자로 작성한다.
+
+state 바꾸는 것은 비동기이다. (Redux는 동기적으로 바뀐다.)

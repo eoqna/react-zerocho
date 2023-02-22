@@ -1,0 +1,71 @@
+Context API
+
+props를 물려줄때 부모와 자식이 다층관계에 있으면 모든 자식을 거쳐서 원하는 자식까지 데이터를 전달해주어야한다.
+
+Context API를 사용하면 props가 필요한 자식 컴포넌트에 바로 전달해줄 수 있다.
+
+ex)
+Context API(X)
+
+const ParentComponent = () => {
+	const [ value, setValue ] = useState('');
+
+	return (
+		<Child1 value={value} />
+	);
+}
+
+const Child1 = ({value}) => {
+	return (
+		<Child2 value={value} />
+	);
+}
+
+const Child2 = ({value} => {
+	return (
+		<h1>{value}</h1>
+	);
+}
+
+
+Context API(O)
+
+
+
+
+
+사용방법
+1.createContext함수를 const 변수에 선언해준다.
+const Context = createContext({초기값});
+
+2. 부모 컴포넌트에서 return의 바깥 부분을 변수명.Provider로 감싸준다.
+return (
+	<Context.Provider>
+		<Child1 />
+	</Context.Provider>
+);
+
+3. 보내줄 데이터는 Context.Provider 안에다가 value속성을 사용하여 넣어준다.
+<Context.Provider value={{ value: value, }}>
+
+
+
+4. 자식 컴포넌트에서 데이터를 사용할 경우 useContext Hook을 사용해서 받아온다. (처음 함수를 선언한 const 변수의 이름을 적어준다.)
+import { Context } from './Parent';
+
+const value = useContext(Context);
+
+
+Context API가 성능 최적화하기 힘들다.
+
+3번에 선언한 것처럼 value값을 선언하면 선언한 부모 컴포넌트가 재렌더링될 때 마다 객체가 새로 생성된다. (자식들도 재렌더링된다.)
+
+따라서 캐싱이 필요하다. (useMemo사용)
+
+const value = useMemo(() => ({
+	value: value,
+}), [value]);
+
+return (
+<Context.Provider value={value}>
+);

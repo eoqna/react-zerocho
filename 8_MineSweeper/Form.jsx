@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import React, { useState, useCallback, useContext, memo } from "react";
 import { TableContext, START_GAME } from './MineSweeper';
 
 const Form = memo(() => {
+=======
+import React, { useState, useCallback, useContext } from "react";
+import { TableContext, START_GAME } from './MineSweeper';
+
+const Form = () => {
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
   const [ row, setRow ] = useState(10);
   const [ cell, setCell ] = useState(10);
   const [ mine, setMine ] = useState(20);
@@ -31,6 +38,10 @@ const Form = memo(() => {
       <button onClick={onClickBtn}>시작</button>
     </div>
   );
+<<<<<<< HEAD
 });
+=======
+};
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
 
 export default Form;

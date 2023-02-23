@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import React, { memo, useContext } from "react";
 import { TableContext } from "./MineSweeper";
 import Td from "./Td";
 
 const Tr = memo(({ rowIndex }) => {
+=======
+import React, { useContext } from "react";
+import { TableContext } from "./MineSweeper";
+import Td from "./Td";
+
+const Tr = ({ rowIndex }) => {
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
   const { tableData } = useContext(TableContext);
   return (
     <tr>
@@ -11,6 +19,10 @@ const Tr = memo(({ rowIndex }) => {
       )}
     </tr>
   );
+<<<<<<< HEAD
 });
+=======
+};
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
 
 export default Tr;

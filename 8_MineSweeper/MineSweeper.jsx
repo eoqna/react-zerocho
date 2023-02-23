@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useReducer, createContext, useMemo, useEffect } from "react";
+=======
+import React, { useReducer, createContext, useMemo } from "react";
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
 import Table from "./Table";
 import Form from "./Form";
 
@@ -21,6 +25,7 @@ export const TableContext = createContext({
 
 const initialState = {
   tableData: [],
+<<<<<<< HEAD
   data: {
     row: 0,
     cell: 0,
@@ -30,6 +35,11 @@ const initialState = {
   result: '',
   halted: true,
   openedCount: 0,
+=======
+  timer: 0,
+  result: '',
+  halted: false,
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
 }
 
 const plantMine = (row, cell, mine) => {
@@ -68,13 +78,17 @@ export const CLICK_MINE = 'CLICK_MINE';
 export const FLAG_CELL = 'FLAG_CELL';
 export const QUESTION_CELL = 'QUESTION_CELL';
 export const NORMALIZE_CELL = 'NORMALIZE_CELL';
+<<<<<<< HEAD
 export const INCREMENT_TIMER = 'INCREMENT_TIMER';
+=======
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
 
 const reducer = (state, action) => {
   switch(action.type) {
     case START_GAME:
       return {
         ...state,
+<<<<<<< HEAD
         data: {
           row: action.row, 
           cell: action.cell, 
@@ -84,6 +98,10 @@ const reducer = (state, action) => {
         tableData: plantMine(action.row, action.cell, action.mine),
         halted: false,
         timer: 0,
+=======
+        tableData: plantMine(action.row, action.cell, action.mine),
+        halted: false,
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
       };
 
     case OPEN_CELL: {
@@ -94,7 +112,10 @@ const reducer = (state, action) => {
       });
 
       const checked = [];
+<<<<<<< HEAD
       let openedCount = 0;
+=======
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
       const checkArround = (row, cell) => {
         if( row < 0 || row >= tableData.length || cell < 0 || cell >= tableData[0].length ) { // 상하좌우 칸이 아닌 경우 필터링
           return;
@@ -155,6 +176,7 @@ const reducer = (state, action) => {
             });
           }
         }
+<<<<<<< HEAD
         if( tableData[row][cell] === CODE.NORMAL) {
           openedCount += 1;
         }
@@ -173,6 +195,14 @@ const reducer = (state, action) => {
         openedCount: state.openedCount + openedCount,
         halted,
         result,
+=======
+        tableData[row][cell] = count;
+      };
+      checkArround(action.row, action.cell);
+      return {
+        ...state,
+        tableData,
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
       };
     };
     
@@ -230,6 +260,7 @@ const reducer = (state, action) => {
       }
     };
 
+<<<<<<< HEAD
     case INCREMENT_TIMER: {
       return {
         ...state,
@@ -237,6 +268,8 @@ const reducer = (state, action) => {
       }
     }
 
+=======
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
     default:
       return state;
   }
@@ -252,6 +285,7 @@ const MineSweeper = () => {
     dispatch,
   }), [tableData, halted]);
 
+<<<<<<< HEAD
   useEffect(() => {
     let timer;
     if( halted === false ) {
@@ -264,6 +298,8 @@ const MineSweeper = () => {
     }
   }, [halted]);
 
+=======
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
   return (
     <TableContext.Provider value={value}>
       <Form />

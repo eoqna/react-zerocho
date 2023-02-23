@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useCallback, useContext, useMemo, memo } from "react";
+=======
+import React, { useCallback, useContext } from "react";
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
 import { CODE, TableContext, OPEN_CELL, CLICK_MINE, FLAG_CELL, QUESTION_CELL, NORMALIZE_CELL } from "./MineSweeper";
 
 const getTdStyle = (code) => {
@@ -63,8 +67,12 @@ const getTdText = (code) => {
   }
 };
 
+<<<<<<< HEAD
 const Td = memo(({ rowIndex, cellIndex }) => {
   console.log('td rendered')
+=======
+const Td = ({ rowIndex, cellIndex }) => {
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
   const { tableData, dispatch, halted } = useContext(TableContext);
 
   const onClickTd = useCallback(() => {
@@ -116,6 +124,7 @@ const Td = memo(({ rowIndex, cellIndex }) => {
     }
   }, [tableData[rowIndex][cellIndex], halted]);
 
+<<<<<<< HEAD
   return <RealTd onClickTd={onClickTd} onRightClickTd={onRightClickTd} data={tableData[rowIndex][cellIndex]} />;
 });
 
@@ -132,5 +141,17 @@ const RealTd = memo(({ onClickTd, onRightClickTd, data}) => {
   )
 });
 
+=======
+  return (
+    <td
+      style={getTdStyle(tableData[rowIndex][cellIndex])}
+      onClick={onClickTd}
+      onContextMenu={onRightClickTd}
+    >
+      {getTdText(tableData[rowIndex][cellIndex])}
+    </td>
+  );
+};
+>>>>>>> af98548fc62bee359853588990bbdb808e5d3953
 
 export default Td;

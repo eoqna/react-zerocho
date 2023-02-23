@@ -37,8 +37,13 @@
 
   // function Component, 함수형 컴포넌트(X) 함수 컴포넌트(O)
   function LikeButton(props) {
-    const [ liked, setLiked ] = React.useState(false);
+    // this를 쓸 일이 없다.
+    const [ liked, setLiked ] = React.useState(false); // 구조 분해
+
+    // 배열과 객체는 완전히 다른 코드이기 때문에 주의해서 사용해야한다.
+    // const { liked, setLiked } = React.useState(false);
     
+    // 뭔 짓을 하든, return한게 화면이다.
     if(liked) {
       return 'You liked this.';
     }
@@ -57,7 +62,6 @@
 
   // React 18 문법
   ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton />);
-
 </script>
 </body>
 </html>

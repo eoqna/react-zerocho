@@ -1,0 +1,43 @@
+<> </> : babel2 에서 지원해주는 <div></div> 대신 사용 가능한 태그.
+
+<> </>가 오류가 난다면 <React.Fragment></React.Fragment>로 감싸주면 된다.
+
+setState는 비동기로 동작한다.
+=>
+setState 하나마다 렌더링이 일어나지 않고 선언된 setState를 모두 모아서 한번에 렌더링하기 때문
+
+따라서 예전 state값으로 새로운 state를 만들때는 return함수를 사용하여 생성해준다.
+
+this.setState((prevState) => {
+	value: prevState.value
+}
+
+
+render의 return안에 있는 태그의 이벤트 안에 직접 함수를 입력할 수도 있지만 그렇게 되면 렌더링할 때마다 새로 함수가 생성되기 때문에 낭비이다.
+그래서 따로 함수로 뺀 후 이벤트안에 선언해주는 것이 좋다.
+
+ex)
+
+render() {
+	<div>
+		<input type="number" ref={(c) => {this.input = c;}}>
+		<button>입력</button>
+	</div>
+}
+
+=>
+
+onRefInput = (c) => { this.input = c;};
+
+render() {
+	<div>
+		<input type="number" ref={this.onRefInput}>
+		<button>입력</button>
+	</div>
+}
+
+
+
+! react에서는 class를 못쓴다. => className
+
+<label>에서 사용하는 for도 htmlFor로 사용해야한다.

@@ -1,0 +1,50 @@
+React Router
+
+1. npm i react-router
+
+2. npm i react-router-dom
+
+네이티브에서 router 사용 시
+
+1. npm i react-router-native
+
+2. npm i react-router-native-dom
+
+
+
+실제로 사용하는 dependency는 react-router-dom 이지만 react-router-dom이 react-router를 사용하기 때문에 같이 설치해준다.
+
+
+Hash router
+
+
+
+browser router
+가장 많이 쓰는 라우터
+
+1. import해준다. (import { BrowserRouter } from 'react-router-dom';
+
+2. return부분에서 사용 return ( <BrowserRouter> </BrowserRouter> )
+
+
+browser router는 새로고침하면 페이지를 찾을 수 없다고 뜬다.
+
+ => 라우터에서 가상 페이지를 만드는 것이기 때문에 새로고침하면 페이지가 사라진다.
+
+ => webpack.config.js 파일의 devServer부분에 historyApiFallback: true 옵션을 추가로 넣어주면 새로고침을 해도 페이지가 유지된다.
+
+
+hash router
+새로고침을 해도 브라우저가 주소를 기억하기 때문에 페이지가 사라지지 않는다.
+
+대신, 서버는 페이지를 모른다. (검색엔진 사용 시 불이익을 받는다.) => 실무에서는 사용하지 않는다.
+
+
+! 검색엔진이 필요없고 주소가 이상해도 괜찮으면 hash router를 사용해도 된다.(관리자 페이지)
+
+ => 배포가 편하다.
+
+
+
+<Switch> 로 <Route>를 감싸면 처음 표시되는 애만 랜더링되고 나머지는 대기한다.
+

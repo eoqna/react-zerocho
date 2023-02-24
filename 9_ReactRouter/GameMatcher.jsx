@@ -21,6 +21,7 @@ const GameMatcher = () => {
   //     일치하는 게임이 없습니다.
   //   </div>
   // )
+  
   return (
     <Routes>
       <Route path='/number-baseball' element={<NumberBaseball />}/>

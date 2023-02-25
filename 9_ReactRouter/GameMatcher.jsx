@@ -9,19 +9,6 @@ const GameMatcher = () => {
   const location = useLocation();
   const path = location.pathname;
 
-  // if(path === '/game/number-baseball') {
-  //   return <NumberBaseball />;
-  // } else if(path === '/game/rock-scissors-papper') {
-  //   return <RSP />;
-  // } else if(path === '/game/lotto-generator') {
-  //   return <Lotto />;
-  // }
-  // return (
-  //   <div>
-  //     일치하는 게임이 없습니다.
-  //   </div>
-  // )
-  
   return (
     <Routes>
       <Route path='/number-baseball' element={<NumberBaseball />}/>

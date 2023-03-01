@@ -1,13 +1,10 @@
 import React from "react";
-// import { useLocation } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import NumberBaseball from '../3_NumberBaseball/NumberBaseballClass';
 import RSP from '../5_RSP/RSPClass';
 import Lotto from '../6_Lotto/LottoClass';
 
 const GameMatcher = () => {
-  // const location = useLocation();
-  // const path = location.pathname;
 
   return (
     <Routes>
